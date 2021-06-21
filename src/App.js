@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [petugas, setPetugas] = useState(["Fathur", "Izul", "Usamah", "Mujahid"]);
+  const [tugas, setTugas] = useState(["Adzan Subuh", "Iqomat Subuh", "Adzan Zhuhur", "Iqomat Zhuhur", "Adzan Ashar", "Iqomat Ashar", "Adzan Maghrib", "Iqomat Maghrib", "Adzan Isya", "Iqomat Isya"]);
+
+  const fungsi = () => {
+    let man = [];
+    for (let i = 0; i < 12; i++) {
+      man.push(petugas[i % 4]);
+    }
+    setPetugas(man);
+  };
+
+  console.log(petugas);
+
   return (
     <div className="App">
-      <header className="App-header">
+      {petugas.map((item) => (
+        <p>{item}</p>
+      ))}
+      <button onClick={fungsi}>BISMILLAH</button>
+      <br />
+      <footer className="App-footer">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </footer>
     </div>
   );
 }
